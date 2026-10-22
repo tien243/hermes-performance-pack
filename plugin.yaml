@@ -1,9 +1,8 @@
 name: hermes-performance-pack
 version: "1.0.0"
-description: "Performance enhancement pack for Hermes Agent: native ripgrep search, parallel batch file operations, and context pruning helper."
-author: "Dang Tien (Solo2OS)"
-entry_point: "__init__.py:register"
-tools:
+description: "Performance enhancement pack for Hermes Agent: native ripgrep search and parallel batch file reading."
+author: "Dang Tien"
+manifest_version: 2
+provides_tools:
   - ripgrep_search
   - batch_read_files
-  - prune_tool_context

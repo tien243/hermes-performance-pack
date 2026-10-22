@@ -7,13 +7,15 @@ logger = logging.getLogger(__name__)
 
 
 def register(ctx):
-    """Register tools and hooks into Hermes Plugin Context."""
+    """Register tools into Hermes Plugin Context following PluginContext.register_tool contract."""
     # 1. Native Ripgrep Search Tool
     ctx.register_tool(
         name="ripgrep_search",
         toolset="performance",
         schema=schemas.RIPGREP_SEARCH_SCHEMA,
-        handler=tools.ripgrep_search
+        handler=tools.ripgrep_search,
+        description="High-speed pattern search using native ripgrep (rg).",
+        emoji="🔍"
     )
 
     # 2. Parallel Batch File Reader Tool
@@ -21,15 +23,9 @@ def register(ctx):
         name="batch_read_files",
         toolset="performance",
         schema=schemas.BATCH_READ_FILES_SCHEMA,
-        handler=tools.batch_read_files
-    )
-
-    # 3. Context Pruning Marker Tool
-    ctx.register_tool(
-        name="prune_tool_context",
-        toolset="performance",
-        schema=schemas.PRUNE_TOOL_CONTEXT_SCHEMA,
-        handler=tools.prune_tool_context
+        handler=tools.batch_read_files,
+        description="Concurrent multi-file reader bounded by thread pool.",
+        emoji="📑"
     )
 
     logger.info("Hermes Performance Pack tools registered successfully.")
